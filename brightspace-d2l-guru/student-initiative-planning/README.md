@@ -8,7 +8,8 @@ Sponsored by John Baker (CEO). Additive to normal co-op work.
 
 - **Building** [Grade calculator sandbox](proposals/001-grade-calculator.md)
 - **Proposed** [Code aware assignments](proposals/002-cs-course-support.md) for programming courses
-- **Proposed** [Readability assist](proposals/003-readability-assist.md), plain language support for course content
+- **Proposed** [Study mode](proposals/003-study-mode.md), an optional focus timer on content and assignment pages
+- **Proposed** [Readability assist](proposals/004-readability-assist.md), plain language support for course content
 - **Not ours** [Dark mode](research/dark-mode.md), already in implementation internally
 - **Lead** Nakul Patel, Maverick
 

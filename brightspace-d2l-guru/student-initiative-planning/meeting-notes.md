@@ -11,10 +11,12 @@ Newest first. Agenda formats are in [templates/meeting-agenda-template.md](templ
 **In flight**
 - Grade calculator sandbox — building
 - Code aware assignments — writing up, meets the bar for team review
+- Study mode — writing up, Bhavjot's, added independently this week
 - Readability assist — writing up, new this week, still unassigned
 
 **Triage**
-- Walk all three against the bar for a proposal, confirm each is actually ready for team review, not just written
+- Walk all four against the bar for a proposal, confirm each is actually ready for team review, not just written
+- Note for the group: readability assist and study mode were both drafted as "003" in parallel on separate branches, readability assist is renumbered to 004 to fix the collision
 - Any new one-liners anyone wants to add to the backlog
 
 **Decisions needed**
