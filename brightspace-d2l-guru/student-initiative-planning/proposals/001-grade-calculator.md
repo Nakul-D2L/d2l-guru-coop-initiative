@@ -2,6 +2,7 @@
 
 - **Owner** Nakul Patel
 - **Status** writing up
+- **Raised** Fall 2026
 - **Owning team** TBD, whoever owns Grades
 
 ## Problem
@@ -15,6 +16,18 @@ Students want to know what their final grade will be, and what they need on what
 - The workaround is manual re-entry of data we already have
 
 **To gather before team review.** Extension install counts and reviews, community forum threads, support tickets, and a short poll of students on a campus.
+
+## Who it affects
+
+Any student in a weighted grade book with ungraded items still outstanding, which is most students for most of a term. Value peaks around exams and withdrawal deadlines, when a student is deciding whether a low mark is survivable or exactly what they need to pass.
+
+## What exists today
+
+- The grades page shows a running current grade across items already scored. Whether it also projects a final total while weighted items remain ungraded, and what the "ungraded items" calculation setting does to that number, needs confirming with the owning team.
+- Item weights appear to already be visible to students in the grade book, not just scores, but this should be confirmed rather than assumed.
+- The weight and score data the calculator needs is very likely already loaded on the grades page. If it is not, the existing grades API should cover it without a new endpoint.
+- No existing view lets a student edit a hypothetical score or reverse-solve for a target grade. That gap is real, not a rebuild of something that already exists.
+- Mobile app parity is unknown and untested.
 
 ## How it works
 
@@ -44,16 +57,6 @@ A hypothetical can never be mistaken for a real mark, and the tool stays anchore
 - **Out** points based and formula grade books, saving scenarios, mobile, instructor visibility, any write to the grade book
 
 Points based is the fast follow if v1 lands.
-
-## What to check before building
-
-These decide whether this is a new feature or a better front end on something half built.
-
-- Does the grades page already show a projected final grade, and when
-- What does the ungraded items setting do to the running total
-- Can students see item weights at all, or only scores
-- Is weight and score data already on the page, or does it need another call
-- What do the mobile apps show
 
 ## Technical approach
 
@@ -96,8 +99,7 @@ Where a configuration is not fully supported, show nothing rather than guessing.
 ## Open questions
 
 - Who owns the student grades page, and who is the PM
-- Does projected grade functionality already exist
-- Is an org level config variable needed
+- Is an org level config variable needed to disable this per institution
 - What is the accessibility review process here
 
 ## Effort

@@ -4,6 +4,7 @@ Better support for courses that teach programming.
 
 - **Owner** Nakul Patel
 - **Status** writing up
+- **Raised** Fall 2026
 - **Owning team** TBD, Assignments plus integrations
 
 ## Problem
@@ -18,6 +19,14 @@ Brightspace treats a code submission like any other file. Students upload source
 - Grade item mapping has known sharp edges, including multiple assignments writing to one grade item
 
 **To gather.** Ask CS instructors directly, search tickets for code submission and passback issues, and find out whether D2L has partnerships with these vendors. That last one changes the strategy.
+
+## Who it affects
+
+Students and instructors in courses with code submissions, concentrated in CS and related programs but not limited to them, since any course that assigns a script or config file has the same problem. Actual enrolment scale is one of the numbers to gather before team review.
+
+## What exists today
+
+Inside Brightspace, a code submission is a generic dropbox file: downloaded, opened in a local editor or diff tool, no highlighting, no project structure, no way to comment on a specific line. Outside it, Codio and zyBooks plug that exact gap through LTI, which is why instructors move courses onto them instead of using the LMS as is. As far as we can tell there is no first party viewer in Brightspace today, but confirm with the owning team before building rather than assume.
 
 ## Why not a built in IDE
 
@@ -75,6 +84,13 @@ Diff and notebooks are the fast follows.
 ## Also worth raising, not proposing
 
 The integration seams, especially due date sync between tool and platform. Higher value than this proposal and only an LMS can fix it, but it involves the LTI spec and partner behaviour. Take it to the integrations team as a question, not a build.
+
+## Open questions
+
+- Who owns Assignments and the submission viewer, and who is the PM
+- Does D2L have a formal partnership or agreement with Codio, zyBooks, or similar vendors
+- What file size and type limits currently apply to dropbox submissions
+- Is there already an internal proposal or roadmap item for a code viewer
 
 ## Effort
 

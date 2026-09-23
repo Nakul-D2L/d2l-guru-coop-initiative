@@ -12,6 +12,9 @@ Students retype their marks into spreadsheets to work out what they need on a fi
 **Code aware assignments** — writing up — Nakul
 Code submissions are treated as generic attachments, so instructors get no highlighting, no file tree, and no way to comment on a line. [Proposal](proposals/002-cs-course-support.md).
 
+**Readability assist** — writing up — Unassigned
+Instructors write content at whatever level comes naturally, and nothing flags when it is dense or jargon heavy for a student who is an English language learner or has a reading disability. [Proposal](proposals/003-readability-assist.md).
+
 ## New
 
 Add one liners here. Name, who raised it, problem in one sentence.

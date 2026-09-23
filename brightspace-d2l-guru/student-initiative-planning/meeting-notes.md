@@ -4,6 +4,28 @@ Newest first. Agenda formats are in [templates/meeting-agenda-template.md](templ
 
 ---
 
+## Today, first full group triage, all dev co-ops, no John
+
+**Agenda**
+
+**In flight**
+- Grade calculator sandbox — building
+- Code aware assignments — writing up, meets the bar for team review
+- Readability assist — writing up, new this week, still unassigned
+
+**Triage**
+- Walk all three against the bar for a proposal, confirm each is actually ready for team review, not just written
+- Any new one-liners anyone wants to add to the backlog
+
+**Decisions needed**
+- Which proposal goes to team review first, and who sets up that meeting
+- Who picks up Readability assist as owner
+
+**Actions**
+- [ ] owner, what, by when
+
+---
+
 ## Upcoming, first formal lunch with John
 
 **Agenda**
