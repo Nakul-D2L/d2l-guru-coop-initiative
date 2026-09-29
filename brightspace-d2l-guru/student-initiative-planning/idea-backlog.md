@@ -6,14 +6,17 @@ Status: new, triaging, writing up, team review, approved, building, shipped, par
 
 ## In flight
 
-**Grade calculator sandbox** — writing up — Nakul
-Students retype their marks into spreadsheets to work out what they need on a final, even though Brightspace holds every grade and weight. [Proposal](proposals/001-grade-calculator.md). The only thing we have committed to building.
+**Grade calculator sandbox** — building — Nakul
+Students retype their marks into spreadsheets to work out what they need on a final, even though Brightspace holds every grade and weight. [Proposal](proposals/001-grade-calculator.md). The only thing we have committed to building. In build now as an internal, client side prototype; owning team still unconfirmed, so nothing ships or gets shown to a real student until they have reviewed it.
 
 **Code aware assignments** — writing up — Nakul
 Code submissions are treated as generic attachments, so instructors get no highlighting, no file tree, and no way to comment on a line. [Proposal](proposals/002-cs-course-support.md).
 
 **Readability assist** — writing up — Unassigned
-Instructors write content at whatever level comes naturally, and nothing flags when it is dense or jargon heavy for a student who is an English language learner or has a reading disability. [Proposal](proposals/003-readability-assist.md).
+Instructors write content at whatever level comes naturally, and nothing flags when it is dense or jargon heavy for a student who is an English language learner or has a reading disability. [Proposal](proposals/004-readability-assist.md).
+
+**Study mode** — writing up — Bhavjot
+Students use a separate timer or study app to structure focus sessions on course work, disconnected from the material they're actually working on in Brightspace. [Proposal](proposals/003-study-mode.md).
 
 ## New
 
