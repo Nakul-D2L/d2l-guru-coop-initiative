@@ -4,7 +4,17 @@ Newest first. Agenda formats are in [templates/meeting-agenda-template.md](templ
 
 ---
 
-## Today, first full group triage, all dev co-ops, no John
+## Decision, start building the grade calculator prototype
+
+Owning team for Grades is still unidentified. Decided to start anyway, scoped as a private, client side prototype: no real data writes, not shown to any student, not merged or shipped until the owning team has reviewed it. Point is to walk into that review with something concrete instead of only a doc.
+
+Proposal and backlog updated to status **building** with that caveat spelled out. New branch for the actual implementation to follow, same repo.
+
+**Still open.** Who owns Grades and who the PM is. Top open question in the proposal, needed before this goes any further than a prototype only we can see.
+
+---
+
+## First full group triage, all dev co-ops, no John
 
 **Agenda**
 

@@ -1,9 +1,11 @@
 # Grade calculator sandbox
 
 - **Owner** Nakul Patel
-- **Status** writing up
+- **Status** building — internal prototype, ahead of team review
 - **Raised** Fall 2026
-- **Owning team** TBD, whoever owns Grades
+- **Owning team** TBD, whoever owns Grades, not yet identified or engaged
+
+**Why we're building before team review.** The owning team is not yet identified, so this stays a private, client side prototype only: no real data writes, no student ever sees it, nothing merges or ships until the owning team has reviewed it. The prototype exists to make that review conversation concrete, not to skip it.
 
 ## Problem
 
@@ -95,10 +97,11 @@ Where a configuration is not fully supported, show nothing rather than guessing.
 - **Institutions dislike the platform appearing to promise a grade.** Mitigated by estimate wording, opt in, and an org level setting to disable.
 - **A student misreads a hypothetical as real.** The main design risk. Worth usability testing with students.
 - **May already be planned.** Check first.
+- **Building without the owning team yet.** We do not know who owns Grades or whether this collides with existing plans. Contained by keeping the prototype client side only, unshipped, and unshown to any real student until they have reviewed it.
 
 ## Open questions
 
-- Who owns the student grades page, and who is the PM
+- Who owns the student grades page, and who is the PM — the most important unanswered question, needed before this goes anywhere near a real student
 - Is an org level config variable needed to disable this per institution
 - What is the accessibility review process here
 

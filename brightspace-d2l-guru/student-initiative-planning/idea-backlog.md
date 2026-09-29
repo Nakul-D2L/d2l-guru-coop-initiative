@@ -6,8 +6,8 @@ Status: new, triaging, writing up, team review, approved, building, shipped, par
 
 ## In flight
 
-**Grade calculator sandbox** — writing up — Nakul
-Students retype their marks into spreadsheets to work out what they need on a final, even though Brightspace holds every grade and weight. [Proposal](proposals/001-grade-calculator.md). The only thing we have committed to building.
+**Grade calculator sandbox** — building — Nakul
+Students retype their marks into spreadsheets to work out what they need on a final, even though Brightspace holds every grade and weight. [Proposal](proposals/001-grade-calculator.md). The only thing we have committed to building. In build now as an internal, client side prototype; owning team still unconfirmed, so nothing ships or gets shown to a real student until they have reviewed it.
 
 **Code aware assignments** — writing up — Nakul
 Code submissions are treated as generic attachments, so instructors get no highlighting, no file tree, and no way to comment on a line. [Proposal](proposals/002-cs-course-support.md).
