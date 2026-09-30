@@ -1,0 +1,16 @@
+{
+	"name": "grade-calculator-sandbox",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Client side calculation engine for the grade calculator sandbox prototype.",
+	"scripts": {
+		"test-runner": "d2l-test-runner",
+		"lint": "eslint ."
+	},
+	"devDependencies": {
+		"@brightspace-ui/testing": "^1.53.1",
+		"eslint": "^9.0.0",
+		"eslint-config-brightspace": "^4.0.0"
+	}
+}
