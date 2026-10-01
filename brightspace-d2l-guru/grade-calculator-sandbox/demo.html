@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Grades</title>
+	<script type="module">
+		import '@brightspace-ui/core/components/typography/typography.js';
+		import '@brightspace-ui/core/components/icons/icon.js';
+		import '@brightspace-ui/core/components/link/link.js';
+	</script>
+	<style>
+		body {
+			margin: 2rem auto;
+			max-width: 48rem;
+		}
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		th, td {
+			border-bottom: 1px solid var(--d2l-color-mica);
+			padding: 0.4rem 0.6rem;
+			text-align: start;
+		}
+		.sandbox-launch {
+			align-items: center;
+			display: flex;
+			gap: 0.4rem;
+			margin: 1.5rem 0;
+		}
+		.current-grade {
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body class="d2l-typography">
+	<h1>Grades</h1>
+	<p>This page stands in for the real Brightspace grades page, read only, so the launch point into the sandbox below looks like where it would actually live.</p>
+
+	<h3>Quizzes (30%, drops lowest 1)</h3>
+	<table>
+		<thead><tr><th>Item</th><th>Score</th></tr></thead>
+		<tbody>
+			<tr><td>Quiz 1</td><td>9 / 10</td></tr>
+			<tr><td>Quiz 2</td><td>6 / 10</td></tr>
+			<tr><td>Quiz 3</td><td>Not yet graded</td></tr>
+		</tbody>
+	</table>
+
+	<h3>Assignments (50%)</h3>
+	<table>
+		<thead><tr><th>Item</th><th>Score</th></tr></thead>
+		<tbody>
+			<tr><td>Assignment 1</td><td>18 / 20</td></tr>
+			<tr><td>Assignment 2</td><td>Not yet graded</td></tr>
+			<tr><td>Bonus assignment</td><td>5</td></tr>
+		</tbody>
+	</table>
+
+	<h3>Participation (15%)</h3>
+	<table>
+		<thead><tr><th>Item</th><th>Score</th></tr></thead>
+		<tbody>
+			<tr><td>Week 1 participation</td><td>10 / 10</td></tr>
+			<tr><td>Week 2 participation</td><td>Exempt</td></tr>
+		</tbody>
+	</table>
+
+	<p class="current-grade" id="current-grade"></p>
+
+	<p class="sandbox-launch">
+		<d2l-icon icon="tier1:preview"></d2l-icon>
+		<d2l-link href="sandbox.html" target="_blank">Try the grade calculator sandbox</d2l-link>
+	</p>
+
+	<script type="module">
+		import { calculateFinalGrade } from '/src/calculator.js';
+
+		// Same gradebook as sandbox.html's worked example, with nothing edited,
+		// so this line proves acceptance criterion 1: unedited sandbox matches this page exactly.
+		const gradebook = {
+			categories: [
+				{
+					id: 'quizzes', weight: 30, dropLowest: 1,
+					items: [
+						{ id: 'q1', score: 9, pointsPossible: 10, isBonus: false, isExempt: false },
+						{ id: 'q2', score: 6, pointsPossible: 10, isBonus: false, isExempt: false },
+						{ id: 'q3', score: null, pointsPossible: 10, isBonus: false, isExempt: false }
+					]
+				},
+				{
+					id: 'assignments', weight: 50, dropLowest: 0,
+					items: [
+						{ id: 'a1', score: 18, pointsPossible: 20, isBonus: false, isExempt: false },
+						{ id: 'a2', score: null, pointsPossible: 20, isBonus: false, isExempt: false },
+						{ id: 'a-bonus', score: 5, pointsPossible: null, isBonus: true, isExempt: false }
+					]
+				},
+				{
+					id: 'participation', weight: 15, dropLowest: 0,
+					items: [
+						{ id: 'p1', score: 10, pointsPossible: 10, isBonus: false, isExempt: false },
+						{ id: 'p2', score: null, pointsPossible: 10, isBonus: false, isExempt: true }
+					]
+				}
+			]
+		};
+
+		const { grade, supported } = calculateFinalGrade(gradebook);
+		document.getElementById('current-grade').textContent = supported
+			? `Current grade: ${Math.round(grade * 10) / 10}%`
+			: 'Current grade: not enough information yet';
+	</script>
+</body>
+</html>

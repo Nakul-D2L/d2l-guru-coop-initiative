@@ -1,6 +1,6 @@
-import { browserConfig, setDirectoryConfigs, testingConfig } from 'eslint-config-brightspace';
+import { litConfig, setDirectoryConfigs, testingConfig } from 'eslint-config-brightspace';
 
 export default setDirectoryConfigs(
-	browserConfig,
+	litConfig,
 	{ test: testingConfig }
 );
