@@ -1,4 +1,4 @@
-import { calculateFinalGrade, solveForTarget } from '../src/calculator.js';
+import { calculateFinalGrade, solveForTarget, withoutDroppedLowest } from '../src/calculator.js';
 import { expect } from '@brightspace-ui/testing';
 
 function item(id, overrides = {}) {
@@ -107,9 +107,20 @@ describe('calculateFinalGrade', () => {
 				category('assignments', 40, [item('a1', { score: 5 })])
 			]
 		};
-		const { grade, supported } = calculateFinalGrade(gradebook);
+		const { grade, supported, totalWeight } = calculateFinalGrade(gradebook);
 		expect(supported).to.be.true;
 		expect(grade).to.equal(75);
+		expect(totalWeight).to.equal(80);
+	});
+
+	it('reports the known weight so a caller can flag categories not yet posted', () => {
+		const gradebook = {
+			categories: [
+				category('quizzes', 30, [item('q1', { score: 10 })])
+			]
+		};
+		const { totalWeight } = calculateFinalGrade(gradebook);
+		expect(totalWeight).to.equal(30);
 	});
 
 });
@@ -156,6 +167,29 @@ describe('solveForTarget', () => {
 		const result = solveForTarget(gradebook, 100);
 		expect(result.achievable).to.be.false;
 		expect(result.supported).to.be.false;
+	});
+
+});
+
+describe('withoutDroppedLowest', () => {
+
+	it('lets a student compare their grade with the drop ignored, without changing the real policy', () => {
+		const gradebook = {
+			categories: [
+				category('quizzes', 100, [
+					item('q1', { score: 10 }),
+					item('q2', { score: 10 }),
+					item('q3', { score: 0 })
+				], 1)
+			]
+		};
+
+		const withDrop = calculateFinalGrade(gradebook);
+		const withoutDrop = calculateFinalGrade(withoutDroppedLowest(gradebook));
+
+		expect(withDrop.grade).to.equal(100);
+		expect(withoutDrop.grade).to.be.closeTo(66.7, 0.1);
+		expect(gradebook.categories[0].dropLowest).to.equal(1);
 	});
 
 });

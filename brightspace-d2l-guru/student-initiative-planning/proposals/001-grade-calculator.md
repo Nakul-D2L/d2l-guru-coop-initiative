@@ -30,6 +30,11 @@ Any student in a weighted grade book with ungraded items still outstanding, whic
 - The weight and score data the calculator needs is very likely already loaded on the grades page. If it is not, the existing grades API should cover it without a new endpoint.
 - No existing view lets a student edit a hypothetical score or reverse-solve for a target grade. That gap is real, not a rebuild of something that already exists.
 - Mobile app parity is unknown and untested.
+- **How instructors actually populate the grades page varies, from direct student experience, and the calculator needs to be correct under all of them rather than assuming one:**
+  - Full category and item structure posted at the start of term, with scores filled in as items are graded (the common case, and what the prototype's worked example models).
+  - Little or nothing posted until near the end of term, then everything appears close together.
+  - Partial visibility: some categories (e.g. Assignments, Quizzes) are kept current while others (e.g. Exams) do not appear in the grade book at all until much later.
+  - Confirm with the owning team that this is driven entirely by instructor data entry, not by any grade book configuration or release condition hiding structure from the API/student view.
 
 ## How it works
 
@@ -104,6 +109,7 @@ Where a configuration is not fully supported, show nothing rather than guessing.
 - Who owns the student grades page, and who is the PM — the most important unanswered question, needed before this goes anywhere near a real student
 - Is an org level config variable needed to disable this per institution
 - What is the accessibility review process here
+- When a category genuinely has not been posted yet (not just ungraded, but entirely absent from the structure), can the real data tell us that a category is still coming, or does the calculator only ever see what currently exists with no signal that more weight is expected? This decides whether a "this estimate only covers X% of your final weight" disclosure is reliable, or just a best-effort guess that itself needs a caveat.
 
 ## Effort
 

@@ -59,18 +59,27 @@ function calculateCategoryPercentage(category, overrides) {
 
 export function calculateFinalGrade(gradebook, hypotheticalScores = {}) {
 	const categories = gradebook?.categories || [];
+	// Reported alongside the grade: a course missing whole categories (not yet posted) still normalizes
+	// against only what is here, so callers can tell the student this isn't the full course weight yet.
 	const totalWeight = categories.reduce((sum, category) => sum + category.weight, 0);
-	if (totalWeight <= 0) return { grade: null, supported: false };
+	if (totalWeight <= 0) return { grade: null, supported: false, totalWeight };
 
 	let weightedTotal = 0;
 	for (const category of categories) {
 		const { percentage, supported } = calculateCategoryPercentage(category, hypotheticalScores);
-		if (!supported) return { grade: null, supported: false };
+		if (!supported) return { grade: null, supported: false, totalWeight };
 		// Normalizing against the actual weight sum handles grade books where weights don't add to 100.
 		weightedTotal += percentage * (category.weight / totalWeight);
 	}
 
-	return { grade: weightedTotal, supported: true };
+	return { grade: weightedTotal, supported: true, totalWeight };
+}
+
+// A display-only comparison, never a real policy override: lets a student see their grade with the
+// teacher's configured drop-lowest applied versus not, so the drop's effect is verifiable, not just trusted.
+export function withoutDroppedLowest(gradebook) {
+	const categories = gradebook?.categories || [];
+	return { categories: categories.map(category => ({ ...category, dropLowest: 0 })) };
 }
 
 function getEditableItems(categories) {

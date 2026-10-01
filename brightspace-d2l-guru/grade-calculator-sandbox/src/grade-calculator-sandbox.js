@@ -2,7 +2,7 @@ import '@brightspace-ui/core/components/alert/alert.js';
 import '@brightspace-ui/core/components/button/button.js';
 import '@brightspace-ui/core/components/icons/icon.js';
 import '@brightspace-ui/core/components/inputs/input-number.js';
-import { calculateFinalGrade, solveForTarget } from './calculator.js';
+import { calculateFinalGrade, solveForTarget, withoutDroppedLowest } from './calculator.js';
 import { css, html, LitElement, nothing } from 'lit';
 
 const COMPONENT_TAG = 'd2l-grade-calculator-sandbox';
@@ -53,9 +53,13 @@ class GradeCalculatorSandbox extends LitElement {
 		gradebook: { type: Object },
 		_currentGrade: { state: true },
 		_currentSupported: { state: true },
+		_currentTotalWeight: { state: true },
+		_hasDropLowestCategory: { state: true },
 		_hypotheticalScores: { state: true },
+		_showWithoutDrop: { state: true },
 		_solveResult: { state: true },
-		_targetGrade: { state: true }
+		_targetGrade: { state: true },
+		_withoutDropGrade: { state: true }
 	};
 
 	static styles = css`
@@ -96,9 +100,13 @@ class GradeCalculatorSandbox extends LitElement {
 		this.gradebook = DEFAULT_GRADEBOOK;
 		this._currentGrade = null;
 		this._currentSupported = false;
+		this._currentTotalWeight = null;
+		this._hasDropLowestCategory = false;
 		this._hypotheticalScores = {};
+		this._showWithoutDrop = false;
 		this._solveResult = null;
 		this._targetGrade = null;
+		this._withoutDropGrade = null;
 	}
 
 	render() {
@@ -112,16 +120,29 @@ class GradeCalculatorSandbox extends LitElement {
 					? html`Estimated final grade: ${this._formatPercentage(this._currentGrade)}`
 					: html`Not enough information to estimate a final grade for this configuration.`}
 			</p>
+			${this._currentSupported && this._currentTotalWeight !== 100
+				? html`<p>Covers ${this._currentTotalWeight}% of the course weight currently posted. The rest isn't graded yet.</p>`
+				: nothing}
+			${this._hasDropLowestCategory ? this._renderDropComparison() : nothing}
 			<d2l-button @click="${this._onReset}">Reset</d2l-button>
 			${this._renderReverseMode()}
 		`;
 	}
 
 	willUpdate(changedProperties) {
+		if (changedProperties.has('gradebook')) {
+			this._hasDropLowestCategory = this.gradebook.categories.some(category => category.dropLowest > 0);
+		}
 		if (changedProperties.has('gradebook') || changedProperties.has('_hypotheticalScores')) {
-			const { grade, supported } = calculateFinalGrade(this.gradebook, this._hypotheticalScores);
+			const { grade, supported, totalWeight } = calculateFinalGrade(this.gradebook, this._hypotheticalScores);
 			this._currentGrade = grade;
 			this._currentSupported = supported;
+			this._currentTotalWeight = totalWeight;
+		}
+		if (this._showWithoutDrop &&
+			(changedProperties.has('gradebook') || changedProperties.has('_hypotheticalScores') || changedProperties.has('_showWithoutDrop'))) {
+			const { grade } = calculateFinalGrade(withoutDroppedLowest(this.gradebook), this._hypotheticalScores);
+			this._withoutDropGrade = grade;
 		}
 	}
 
@@ -161,6 +182,10 @@ class GradeCalculatorSandbox extends LitElement {
 		this._targetGrade = e.target.value;
 	}
 
+	_onToggleDropComparison() {
+		this._showWithoutDrop = !this._showWithoutDrop;
+	}
+
 	_renderCategory(category) {
 		return html`
 			<h3>
@@ -176,6 +201,19 @@ class GradeCalculatorSandbox extends LitElement {
 					${category.items.map(item => this._renderItem(item))}
 				</tbody>
 			</table>
+		`;
+	}
+
+	_renderDropComparison() {
+		return html`
+			<p>
+				<d2l-button @click="${this._onToggleDropComparison}">
+					${this._showWithoutDrop ? 'Hide' : 'Show'} grade without the dropped lowest score
+				</d2l-button>
+				${this._showWithoutDrop
+					? html` — without the drop: ${this._formatPercentage(this._withoutDropGrade)}`
+					: nothing}
+			</p>
 		`;
 	}
 
